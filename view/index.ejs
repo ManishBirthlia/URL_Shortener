@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>URL Shortener</title>
+</head>
+<body class="bg-slate-500">
+    <h1 class="text-center text-5xl my-3 mb-12 font-mono">URL Shortener</h1>
+    <form action="/shortUrls" method="post" class="text-center mt-6">
+        <label class="block sr-only" for="fullURL"><span class="block text-sm font-medium text-slate-700">URL</span></label>
+        <input class="ring-2 p-2 rounded-md mx-3" type="url" placeholder="Enter Url" name="fullURL" id="fullURL">
+        <button class="ring-2 rounded-md py-2 px-4 bg-slate-900 text-slate-400" type="submit">Shrink</button>
+    </form>
+    <div class="my-5 mx-5 flex flex-wrap justify-center">
+    <% shortUrls.forEach(element => { %>
+        <div class="w-96 flex shadow-xl bg-white dark:bg-slate-900 rounded-lg px-6 my-6 mx-3 py-8 ring-1 ring-slate-900/5 shadow-xl">
+            <div class="mx-2 w-1/2">
+                <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Full URL</h3>
+                <p class="truncate text-slate-500 dark:text-slate-400 mt-2 text-sm">
+                    <a href="<%= element.full %>" class="truncate" rel="noopener noreferrer"><%= element.full %></a>
+                </p>
+            </div>
+            <div class="mx-2">
+                <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Short URL</h3>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+                    <a href="/<%= element.short %>" rel="noopener noreferrer"><%= element.short %></a>
+                </p>
+            </div>
+            <div class="mx-2">  
+                <h3 class="text-slate-900 dark:text-white mt-5 text-base font-medium tracking-tight">Clicks</h3>
+                <p class="text-slate-500 dark:text-slate-400 mt-2 text-sm">
+                    <%= element.clicks %>
+                </p>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+</body>
+</html>

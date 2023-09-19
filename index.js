@@ -6,7 +6,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelecti
 })
 const ShortUrl=require("./Models/ShortUrl");
 
-// mongodb+srv://manishbirthliya:bEnNacyUtUFI1K4N@manish.qmctkhr.mongodb.net/
 // let globalUrl={full:"",short:"",count:0};
 app.set("view engine","ejs");
 app.use(express.static("view"));

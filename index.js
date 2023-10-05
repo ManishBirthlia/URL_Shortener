@@ -6,8 +6,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/?directConnection=true&serverSelecti
 })
 const ShortUrl=require("./Models/ShortUrl");
 
-// mongodb+srv://manishbirthliya:bEnNacyUtUFI1K4N@manish.qmctkhr.mongodb.net/
-// let globalUrl={full:"",short:"",count:0};
 app.set("view engine","ejs");
 app.use(express.static("view"));
 app.use(express.urlencoded({extended:true}));
@@ -15,13 +13,10 @@ app.use(express.urlencoded({extended:true}));
 app.get("/",async (req,res)=>{
     const shortUrls=await ShortUrl.find();
     res.render(__dirname + "/view/index.ejs",{shortUrls:shortUrls});
-    // {ejs ./template_file.ejs -f data_file.json -o ./output.html}
 });
 
 app.post("/ShortUrls",async(req,res)=>{
-    // const {fullURL}=req.body;
     await ShortUrl.create({full:req.body.fullURL});
-    // globalUrl.full=fullURL;
     res.redirect("/");
 });
 
